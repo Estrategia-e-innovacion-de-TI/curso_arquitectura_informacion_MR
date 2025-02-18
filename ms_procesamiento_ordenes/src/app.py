@@ -1,7 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel, Field
-# from kafka import KafkaProducer
-import json
+import asyncio
+import time
 
 app = FastAPI()
 
@@ -10,25 +10,29 @@ class Order(BaseModel):
     asset_type: str
     amount_in_usd: float = Field(..., gt=0)
 
-# producer = KafkaProducer(
-#     bootstrap_servers='localhost:9092',
-#     value_serializer=lambda v: json.dumps(v).encode('utf-8')
-# )
 
 @app.get("/health")
 def health():
     return {"message": "app is online"}
 
 @app.post("/order")
-def create_order(order: Order):
-    if order.order_type not in ["venta", "compra"]:
-        raise HTTPException(status_code=400, detail="Invalid order type")
-    if order.amount_in_usd <= 0:
-        raise HTTPException(status_code=400, detail="Amount must be greater than 0")
+async def create_order(order: Order):
+    """ Recepcion de ordenes de compra y venta.
+    Este endpoint recibe una orden de compra o venta, valida el tipo de orden y la envia al broker Kafka. Se simula un tiempo de 30 ms para operaciones bloqueantes y 170 ms para operaciones asincronas.
 
-    topic = 'orders_purchase' if order.order_type == 'compra' else 'orders_selling'
-    print(f"Order sent to topic {topic}: {order}")
+    Args:
+        order (Order): Orden de compra o venta
+
+    Returns:
+        dict: Mensaje de confirmacion de recepcion
+    """
+    # Validacion de tipo de orden
+    print(f"Validating order: {order}")
+    time.sleep(0.03)
     
-    # producer.send(topic, order.dict())
-    # producer.flush()
-    return {"message": "Order sent to Kafka", "order": order.dict()}
+    # Envio al broker kafka
+    print(f"Sending order to Kafka: {order}")
+    await asyncio.sleep(0.17)
+    
+    
+    return {"message": "Order sent to Kafka", "order": order}
