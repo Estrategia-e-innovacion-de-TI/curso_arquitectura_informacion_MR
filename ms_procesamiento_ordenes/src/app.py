@@ -28,11 +28,11 @@ async def create_order(order: Order):
     """
     # Validacion de tipo de orden
     print(f"Validating order: {order}")
-    time.sleep(0.03)
+    time.sleep(0.05)
     
     # Envio al broker kafka
     print(f"Sending order to Kafka: {order}")
-    await asyncio.sleep(0.06)
+    await asyncio.sleep(0.13)
     
     
     return {"message": "Order sent to Kafka", "order": order}
