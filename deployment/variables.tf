@@ -27,3 +27,16 @@ variable "user_data_file" {
   description = "User data file for instance"
   type        = string
 }
+
+variable "ecs_min_task_count" {
+  description = "The minimum number of tasks in the ecs to run "
+  type = number
+}
+variable "ecs_cpu_task" {
+  description = "The CPU for the ECS task (vCPU)"
+  type = number
+}
+variable "ecs_memory_task" {
+  description = "The memory for the ECS task (GB)"
+  type = number
+}
