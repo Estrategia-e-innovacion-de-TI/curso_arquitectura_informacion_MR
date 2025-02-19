@@ -7,7 +7,7 @@ IMAGE_TAG="latest"
 
 # Build the Docker image
 echo "Building the Docker image..."
-docker build -t ${AWS_ACCOUNT_ID}${IMAGE_NAME}:${IMAGE_TAG} .
+docker build --platform linux/amd64 -t ${AWS_ACCOUNT_ID}${IMAGE_NAME}:${IMAGE_TAG} .
 
 # Check if the build was successful
 if [ $? -ne 0 ]; then
