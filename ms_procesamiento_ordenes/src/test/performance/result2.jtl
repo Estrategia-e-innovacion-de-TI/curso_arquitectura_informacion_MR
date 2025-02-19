@@ -1,0 +1,21 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1739975383924,221,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-1,text,true,,255,292,7,7,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,217,0,25
+1739975383937,208,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-3,text,true,,255,292,7,7,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,204,0,12
+1739975383987,201,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-4,text,true,,255,292,6,6,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,201,0,1
+1739975383924,266,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-2,text,true,,255,292,5,5,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,266,0,25
+1739975384036,202,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-5,text,true,,255,292,5,5,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,202,0,1
+1739975384086,186,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-6,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,186,0,1
+1739975384136,184,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-7,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,184,0,1
+1739975384186,184,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-8,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,184,0,1
+1739975384236,185,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-9,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,185,0,1
+1739975384285,185,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-10,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,185,0,1
+1739975384336,184,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-11,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,184,0,1
+1739975384385,184,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-12,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,184,0,1
+1739975384436,205,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-13,text,true,,255,292,5,5,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,205,0,1
+1739975384486,203,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-14,text,true,,255,292,5,5,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,203,0,1
+1739975384536,207,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-15,text,true,,255,292,5,5,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,207,0,0
+1739975384586,185,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-16,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,185,0,1
+1739975384635,184,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-17,text,true,,255,292,4,4,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,184,0,1
+1739975384685,185,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-18,text,true,,255,292,3,3,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,185,0,1
+1739975384736,191,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-19,text,true,,255,292,2,2,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,191,0,6
+1739975384786,188,HTTP Request,200,OK,Prueba de procesamiento de ordenes 1-20,text,true,,255,292,1,1,http://cursoArqSoft-lb-1927677102.us-east-1.elb.amazonaws.com/order,188,0,1
