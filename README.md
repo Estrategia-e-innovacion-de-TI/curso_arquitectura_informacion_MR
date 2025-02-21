@@ -27,6 +27,9 @@ el mockup se hace con una operacion bloqueante de 50 ms y una operacion no bloqu
 
 El codigo de la aplicacion la puede encontrar en [./ms_procesamiento_ordendes/src/app.py](./ms_procesamiento_ordendes/src/app.py), la infraestructura de despliegue del experimento en los archivos terraform [./ms_procesamiento_odeployment/exp1/](./ms_procesamiento_odeployment/exp1/) y adicionalmente el analisis de los resultados de la prueba en el notebook [./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb](./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb)
 
+#### Video ejecución experimento 1
+[![Video explicativo](https://img.youtube.com/vi/xyLJMX-aJnI/0.jpg)](https://youtu.be/xyLJMX-aJnI)
+
 ### Experimento 2
 
 Para la latencia se crea un microservicio en python que es capaz de procesar la cola de mensajeria en SQS. Primero se muestra como el microservicio procesa la cola de forma secuencial, y posteriormente utilizando concurrencia. 
