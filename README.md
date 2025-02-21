@@ -29,7 +29,7 @@ El codigo de la aplicacion la puede encontrar en [./ms_procesamiento_ordendes/sr
 
 #### Video ejecución experimento 1
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/xyLJMX-aJnI?si=te2UdGdIFdILyzRl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Ejecución experimento 1](https://img.youtube.com/vi/xyLJMX-aJnI/maxresdefault.jpg)](https://www.youtube.com/watch?v=xyLJMX-aJnI "Ejecución experimento 1")
 
 ### Experimento 2
 
