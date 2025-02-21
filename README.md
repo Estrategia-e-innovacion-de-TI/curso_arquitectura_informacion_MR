@@ -28,7 +28,8 @@ el mockup se hace con una operacion bloqueante de 50 ms y una operacion no bloqu
 El codigo de la aplicacion la puede encontrar en [./ms_procesamiento_ordendes/src/app.py](./ms_procesamiento_ordendes/src/app.py), la infraestructura de despliegue del experimento en los archivos terraform [./ms_procesamiento_odeployment/exp1/](./ms_procesamiento_odeployment/exp1/) y adicionalmente el analisis de los resultados de la prueba en el notebook [./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb](./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb)
 
 #### Video ejecución experimento 1
-[![Video explicativo](https://img.youtube.com/vi/xyLJMX-aJnI/0.jpg)](https://youtu.be/xyLJMX-aJnI)
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/xyLJMX-aJnI?si=te2UdGdIFdILyzRl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Experimento 2
 
