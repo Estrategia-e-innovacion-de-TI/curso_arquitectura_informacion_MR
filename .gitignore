@@ -180,4 +180,4 @@ cython_debug/
 *.tfout
 *.tfenv
 *.terraform.lock.hcl
-.terraform/
+*.terraform*
