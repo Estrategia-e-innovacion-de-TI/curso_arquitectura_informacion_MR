@@ -25,7 +25,7 @@ Para resolver los dos ASR planteados, se propone las siguientes tacticas de arqu
 Para escalabilidad se propone generar un endpoint en FASTApi el cual toma la peticion y simula un procesamienot de una orden. 
 el mockup se hace con una operacion bloqueante de 50 ms y una operacion no bloqueante de 130 ms. Dicho microservicio se desplegara en un cluster de ECS tipo Fargate y se hace una prueba de performance utilizando JMeter. 
 
-El codigo de la aplicacion la puede encontrar en [./ms_procesamiento_ordendes/src/app.py](./ms_procesamiento_ordendes/src/app.py), la infraestructura de despliegue del experimento en los archivos terraform [./deployment/exp1/](./deployment/exp1/) y adicionalmente el analisis de los resultados de la prueba en el notebook [./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb](./ms_procesamiento_ordendes/notebooks/analisis_exp.ipynb)
+El codigo de la aplicacion la puede encontrar en [./ms_procesamiento_ordenes/src/app.py](./ms_procesamiento_ordenes/src/app.py), la infraestructura de despliegue del experimento en los archivos terraform [./deployment/exp1/](./deployment/exp1/) y adicionalmente el analisis de los resultados de la prueba en el notebook [./ms_procesamiento_ordenes/notebooks/analisis_exp.ipynb](./ms_procesamiento_ordenes/notebooks/analisis_exp.ipynb)
 
 #### Video ejecución experimento 1
 
