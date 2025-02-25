@@ -39,4 +39,4 @@ El codigo de la aplicacion la puede encontrar en [./ms_notificaciones/scripts/pu
 
 #### Video ejecución experimento 2
 
-[![Ejecución experimento 2](https://img.youtube.com/vi/oPtupLTpol8/maxresdefault.jpg)](https://www.youtube.com/watch?v=oPtupLTpol8 "Ejecución experimento 2")
+[![Ejecución experimento 2](https://img.youtube.com/vi/BRbUrr0yXo0/maxresdefault.jpg)](https://www.youtube.com/watch?v=BRbUrr0yXo0 "Ejecución experimento 2")
