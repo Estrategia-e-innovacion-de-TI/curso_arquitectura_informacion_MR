@@ -27,3 +27,8 @@ variable "user_data_file" {
   description = "User data file for instance"
   type        = string
 }
+
+variable "db_password" {
+  description = "Database password"
+  type        = string
+}

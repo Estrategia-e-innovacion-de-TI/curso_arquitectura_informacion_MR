@@ -16,7 +16,3 @@ resource "aws_instance" "microservices"{
       volume_size = 2000
   }
 }
-
-output "instance_public_ips" {
-  value = aws_instance.microservices.public_ip
-}
