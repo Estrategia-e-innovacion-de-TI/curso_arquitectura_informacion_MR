@@ -122,6 +122,12 @@ async def create_order(order: CreateOrderRequest):
     Returns:
         dict: Mensaje de confirmacion de recepcion
     """
+    # Simular fallo aleatorio (5% de probabilidad)
+    import random
+    if random.random() < 0.02:  # 5% de probabilidad
+        print("Fallo aleatorio simulado en create_order")
+        raise HTTPException(status_code=500, detail="Error aleatorio simulado en la creación de orden (5% de probabilidad)")
+
     try:
         # Obtener conexión a la base de datos
         conn = get_db_connection()
