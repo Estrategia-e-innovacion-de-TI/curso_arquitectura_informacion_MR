@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debugger: ms_monitoring",
+            "type": "debugpy",
+            "python": "${workspaceFolder}/Reto2/src/ms_monitoring_system/.venv/bin/python",
+            "request": "launch",
+            "module": "fastapi",
+            "args": [
+                "run",
+                "Reto2/src/ms_monitoring_system/src/main.py",
+                "--port",
+                "8080"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}
