@@ -1,0 +1,11 @@
+[project]
+name = "ms-order-service"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.12",
+    "psycopg2>=2.9.10",
+    "pydantic>=2.11.1",
+]
