@@ -24,6 +24,11 @@ class CreateOrderRequest(BaseModel):
     usuario_creador: str
     fecha_entrega: str
     observaciones: str
+    
+class UpdateOrderRequest(BaseModel):
+    id: int
+    estado: str = Field(..., pattern="^(creada|en_proceso|entregada|cancelada)$")
+    observaciones: str = None
 
 
 # Database connection function
@@ -44,12 +49,12 @@ def get_db_connection():
 
 @app.get("/health")
 def health():
-    return {"message": "app is online"}
+    return {"message": "order_service is online"}
 
 @app.get("/order_status/{order_id}")
 async def order_status(order_id: str):
     """ Consulta de estado de ordenes de compra y venta.
-    Este endpoint consulta el estado de una orden de compra o venta, valida el id de la orden y simula un tiempo de 30 ms para operaciones bloqueantes y 170 ms para operaciones asincronas.
+    Este endpoint consulta el estado de una orden de compra o venta, valida el id de la orden y consulta la base de datos para obtener el estado actual.
 
     Args:
         order_id (str): Id de la orden
@@ -58,14 +63,53 @@ async def order_status(order_id: str):
         dict: Mensaje de confirmacion de recepcion
     """
     # Validacion de id de orden
-    print(f"Validating order ID: {order_id}")
-    time.sleep(0.05)
+    try:
+        # Verificar que el ID es un número
+        order_id_int = int(order_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="ID de orden inválido. Debe ser un número entero.")
     
-    # Simulacion de consulta al broker kafka
-    print(f"Fetching order status from Kafka for ID: {order_id}")
-    await asyncio.sleep(0.13)
+    try:
+        # Obtener conexión a la base de datos
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Consultar la orden en la base de datos
+        query = "SELECT * FROM orden_servicio WHERE id = %s"
+        cursor.execute(query, (order_id_int,))
+        
+        # Obtener el resultado
+        order_info = cursor.fetchone()
+        
+        # Cerrar cursor y conexión
+        cursor.close()
+        conn.close()
+        
+        # Verificar si la orden existe
+        if not order_info:
+            raise HTTPException(status_code=404, detail=f"No se encontró una orden con el ID: {order_id}")
+        # Devolver la información del estado de la orden
+        return {
+            "order_id": order_id_int,
+            "status": order_info["estado"],
+            "details": {
+                "tipo_productos": order_info["tipo_productos"],
+                "cantidad_productos": order_info["cantidad_productos"],
+                "direccion_entrega": order_info["direccion_entrega"],
+                "usuario_creador": order_info["usuario_creador"],
+                "fecha_creacion": order_info["fecha_hora_creacion"].isoformat() if order_info["fecha_hora_creacion"] else None,
+                "fecha_entrega": order_info["fecha_entrega"].isoformat() if order_info["fecha_entrega"] else None,
+                "observaciones": order_info["observaciones"]
+            }
+        }  
+    except Exception as e:
+        # En caso de error, intentar cerrar la conexión
+        if 'conn' in locals() and conn:
+            conn.close()
+        print(f"Error consultando estado de orden: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar el estado de la orden: {str(e)}")
     
-    return {"message": "Order status fetched", "order_id": order_id}
+    
 
 @app.post("/create_order")
 async def create_order(order: CreateOrderRequest):
@@ -123,9 +167,6 @@ async def create_order(order: CreateOrderRequest):
         cursor.close()
         conn.close()
         
-        # Simular operación asíncrona
-        await asyncio.sleep(0.13)
-        
         return {
             "message": "Orden de servicio creada exitosamente",
             "order_id": order_id,
@@ -142,23 +183,80 @@ async def create_order(order: CreateOrderRequest):
 
 
 @app.post("/update_order")
-async def update_order(order: Order):
-    """ Actualizacion de ordenes de compra y venta.
-    Este endpoint actualiza una orden de compra o venta, valida el tipo de orden y la envia al broker Kafka. Se simula un tiempo de 30 ms para operaciones bloqueantes y 170 ms para operaciones asincronas.
+async def update_order(update_request: UpdateOrderRequest):
+    """ Actualización del estado de una orden de servicio.
+    Este endpoint actualiza el estado de una orden existente en la base de datos.
 
     Args:
-        order (Order): Orden de compra o venta
+        update_request (UpdateOrderRequest): Datos para actualizar la orden
 
     Returns:
-        dict: Mensaje de confirmacion de recepcion
+        dict: Mensaje de confirmación de la actualización
     """
-    # Validacion de tipo de orden
-    print(f"Validating order: {order}")
-    time.sleep(0.05)
-    
-    # Envio al broker kafka
-    print(f"Sending order to Kafka: {order}")
-    await asyncio.sleep(0.13)
-    
-    
-    return {"message": "Order updated in Kafka", "order": order}
+    try:
+        # Obtener conexión a la base de datos
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Verificar si la orden existe
+        check_query = "SELECT id FROM orden_servicio WHERE id = %s"
+        cursor.execute(check_query, (update_request.id,))
+        order = cursor.fetchone()
+        
+        if not order:
+            cursor.close()
+            conn.close()
+            raise HTTPException(status_code=404, detail=f"No se encontró una orden con el ID: {update_request.id}")
+        
+        # Preparar la consulta SQL para actualizar
+        update_query = """
+        UPDATE orden_servicio 
+        SET estado = %s, 
+            observaciones = CASE 
+                WHEN %s IS NOT NULL THEN %s 
+                ELSE observaciones 
+            END
+        WHERE id = %s
+        RETURNING id, estado;
+        """
+        
+        # Ejecutar la consulta
+        cursor.execute(
+            update_query,
+            (
+                update_request.estado,
+                update_request.observaciones,
+                update_request.observaciones,
+                update_request.id
+            )
+        )
+        
+        # Obtener el resultado de la actualización
+        updated_order = cursor.fetchone()
+        
+        # Confirmar la transacción
+        conn.commit()
+        
+        # Cerrar cursor y conexión
+        cursor.close()
+        conn.close()
+        
+        # Simular un pequeño retraso de procesamiento
+        time.sleep(0.05)
+        
+        return {
+            "message": "Estado de la orden actualizado exitosamente",
+            "order_id": updated_order["id"],
+            "new_status": updated_order["estado"],
+            "timestamp": datetime.now().isoformat()
+        }
+        
+    except Exception as e:
+        # En caso de error, intentar cerrar la conexión
+        if 'conn' in locals() and conn:
+            conn.close()
+        print(f"Error updating order: {e}")
+        raise HTTPException(status_code=500, detail=f"Error al actualizar la orden: {str(e)}")
+
+
+
