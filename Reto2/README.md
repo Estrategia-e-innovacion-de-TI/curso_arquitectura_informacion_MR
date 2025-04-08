@@ -27,7 +27,7 @@ El codigo de la aplicacion del microservicio de ordendes se encuentra en [./src/
 
 #### Video ejecución experimento 1
 
-[![Ejecución experimento 1](https://www.youtube.com/watch?v=8oegy1n7s-Q&ab_channel=Nicolas "Ejecución experimento 1")
+[![Ejecución experimento 1](https://img.youtube.com/vi/8oegy1n7s-Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=8oegy1n7s-Q "Ejecución experimento 1")
 
 
 ### Experimento 2
