@@ -199,6 +199,10 @@ async def update_order(update_request: UpdateOrderRequest):
     Returns:
         dict: Mensaje de confirmación de la actualización
     """
+    import random
+    if random.random() < 0.02:  # 5% de probabilidad
+        print("Fallo aleatorio simulado en update_order")
+        raise HTTPException(status_code=500, detail="Error aleatorio simulado en la actualizacion de orden (5% de probabilidad)")
     try:
         # Obtener conexión a la base de datos
         conn = get_db_connection()

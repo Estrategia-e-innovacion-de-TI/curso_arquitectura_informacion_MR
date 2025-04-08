@@ -1,0 +1,1 @@
+{"service":"ms-order-service","status":"healthy","message":"Flujo completo exitoso","metrics":{"total_time_ms":173.57897758483887,"created_order_id":1904,"timestamp":"2025-04-07T18:29:08.362376"}}

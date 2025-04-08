@@ -1,0 +1,1 @@
+jmeter -n -t src/prueba_monitoreo.jmx -l notebooks/exp1_disponibilidad/results.jtl

@@ -1,0 +1,1 @@
+{"service":"ms-order-service","status":"degraded","message":"Error en monitoreo: Create order endpoint returned 500","metrics":{"total_time_ms":13.656854629516602,"alert_id":"9a537169-cfd8-474b-95c5-b781cfa7d5f0","timestamp":"2025-04-07T18:28:52.196553"}}
