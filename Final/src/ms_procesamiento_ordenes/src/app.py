@@ -5,18 +5,19 @@ import time
 
 app = FastAPI()
 
-class Order(BaseModel):
-    order_type: str = Field(..., pattern="^(venta|compra)$")  # "venta" o "compra"
-    asset_type: str
-    amount_in_usd: float = Field(..., gt=0)
+class Score(BaseModel):
+    score: int
+    identifier: str = Field(..., description="Unique identifier for the user")
+    ingress: str = Field(..., description="Ingress money")
+    egress: str = Field(..., description="Egress money")
 
 
 @app.get("/health")
 def health():
     return {"message": "app is online"}
 
-@app.post("/order")
-async def create_order(order: Order):
+@app.post("/evaluate_score")
+async def create_order(score_card: Score):
     """ Recepcion de ordenes de compra y venta.
     Este endpoint recibe una orden de compra o venta, valida el tipo de orden y la envia al broker Kafka. Se simula un tiempo de 30 ms para operaciones bloqueantes y 170 ms para operaciones asincronas.
 
@@ -27,12 +28,12 @@ async def create_order(order: Order):
         dict: Mensaje de confirmacion de recepcion
     """
     # Validacion de tipo de orden
-    print(f"Validating order: {order}")
+    print(f"Validating order: {score_card}")
     time.sleep(0.05)
     
     # Envio al broker kafka
-    print(f"Sending order to Kafka: {order}")
+    print(f"Sending order to Kafka: {score_card}")
     await asyncio.sleep(0.13)
     
     
-    return {"message": "Order sent to Kafka", "order": order}
+    return {"message": "Order sent to Kafka", "order": score_card}
