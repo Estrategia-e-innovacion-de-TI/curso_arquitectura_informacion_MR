@@ -1,5 +1,5 @@
 resource "aws_ecs_service" "service" {
-  name            = "backend-service-ordenes-procesamiento"
+  name            = "backend-service-score-procesamiento"
   cluster         = data.aws_ecs_cluster.existing_ecs_cluster_innovacion.id
   task_definition = aws_ecs_task_definition.task_cursoArqSoft.arn
   desired_count   = var.ecs_min_task_count
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.cursoArqSoft_lb_tg.arn
-    container_name   = "backend-procesamiento-ordenes-container"
+    container_name   = "backend-procesamiento-score-container"
     container_port   = 80
   }
 }
@@ -23,7 +23,7 @@ resource "aws_ecs_service" "service" {
 
 
 resource "aws_ecs_task_definition" "task_cursoArqSoft" {
-  family                = "backend-procesamiento-ordenes"
+  family                = "backend-procesamiento-score"
   network_mode          = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                    = tostring(1024*var.ecs_cpu_task)
@@ -33,8 +33,8 @@ resource "aws_ecs_task_definition" "task_cursoArqSoft" {
 
   container_definitions = jsonencode([
     {
-      "name": "backend-procesamiento-ordenes-container",
-      "image": "538430999815.dkr.ecr.us-east-1.amazonaws.com/curso-arquitectura-software/procesamiento-ordenes:latest",
+      "name": "backend-procesamiento-score-container",
+      "image": "538430999815.dkr.ecr.us-east-1.amazonaws.com/curso-arquitectura-software/score-crediticio:latest",
       "essential": true,
       "portMappings": [
         {
@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "task_cursoArqSoft" {
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/backend-procesamiento-ordenes-curso-arq-soft",
+          "awslogs-group": "/ecs/backend-procesamiento-score-curso-arq-soft",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
