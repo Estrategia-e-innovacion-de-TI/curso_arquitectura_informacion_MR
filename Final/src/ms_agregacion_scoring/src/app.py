@@ -17,15 +17,13 @@ def health():
     return {"message": "app is online"}
 
 @app.post("/evaluate_score")
-async def create_order(score_card: Score):
-    """ Recepcion de ordenes de compra y venta.
-    Este endpoint recibe una orden de compra o venta, valida el tipo de orden y la envia al broker Kafka. Se simula un tiempo de 30 ms para operaciones bloqueantes y 170 ms para operaciones asincronas.
-
+async def evaluate_score(score_card: Score):
+    """ Recepcion de score crediticio
+    
     Args:
-        order (Order): Orden de compra o venta
-
+        score_card (Score): Datos del score crediticio
     Returns:
-        dict: Mensaje de confirmacion de recepcion
+        dict: Mensaje de confirmacion y datos del score
     """
     # Validacion de tipo de orden
     print(f"Validating order: {score_card}")

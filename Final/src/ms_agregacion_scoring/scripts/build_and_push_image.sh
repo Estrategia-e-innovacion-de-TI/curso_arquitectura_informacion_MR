@@ -2,7 +2,7 @@
 
 # Set the image name and tag
 AWS_ACCOUNT_ID="538430999815.dkr.ecr.us-east-1.amazonaws.com"
-IMAGE_NAME="/curso-arquitectura-software/procesamiento-ordenes"  # 
+IMAGE_NAME="/curso-arquitectura-software/score-crediticio"  # 
 IMAGE_TAG="latest" 
 
 # Build the Docker image
