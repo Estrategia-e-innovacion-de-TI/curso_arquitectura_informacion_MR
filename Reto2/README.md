@@ -2,6 +2,7 @@
 El objetivo del reto 2 consiste disenar una arquitectura de software para un sistema de ordenes de servicio generadas por tenderos y vendedores. El objetivo principal es el de analizar ASR de disponibilidad y seguridad. A continuacion el diagrama de componentes de la solución
 
 ![Diagrama de componentes](img/DiagramaComponentes.png)
+![Diaframa de despliegue](img/DiagramaDespliegue.png)
 
 ## Architecturally Significant Requirements (ASR)
 
@@ -16,7 +17,7 @@ Para resolver los dos ASR planteados, se propone las siguientes tacticas de arqu
 
 - Para disponibilidad se propone implementar la tactica de deteccion de falla mediante un sistema de monitoreo de salud del microservicios.
 
-- Para seguridad se propone XXXXXXXXXXXXXXXXXXXXXX
+- Para seguridad de propone implementar la táctica de mediante un sistema de monitoreo de información georeferenciada de las rutas 
 
 ## Experimentos
 ### Experimento 1
@@ -32,10 +33,11 @@ El codigo de la aplicacion del microservicio de ordendes se encuentra en [./src/
 
 ### Experimento 2
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Para el ASR de seguridad se realiza un despliegue del microservicio de monitoreo de rutas con un endpoint (/monitor/tracking). Este estará realizando monitoreo de las rutas con información geoespacial identificando discrepancias entres las rutas válidas y las rutas realizadas por los conductores, con un umbral de 500 mts. 
 
-El codigo de la aplicacion la puede encontrar en XXXXXXXXXX
+El codigo de la aplicacion del microservicio de ordendes se encuentra en [./src/ms_order_service/src/main.py](./src/ms_order_service/src/main_tracking.py), y finalmente  lso resultados de la prueba en el html [./graphics/rutas_medellin_discrepancias.html](./graphics/rutas_medellin_discrepancias.html)
+
 
 #### Video ejecución experimento 2
 
-CXXXXXXXXXXXXXXXXXXXXx
+[![Ejecución experimento 2](https://img.youtube.com/vi/wDrZvxps5xY/maxresdefault.jpg)](https://www.youtube.com/watch?v=wDrZvxps5xY "Ejecución experimento 2")
